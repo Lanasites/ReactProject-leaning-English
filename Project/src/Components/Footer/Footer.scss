@@ -1,0 +1,16 @@
+@import '../../style/vars';
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    height: 90px;
+    font-family: $font_family;
+    align-items: center;
+    font-family: '';
+    
+    &__logo{
+        width: 120px;
+        height: 60px;
+        
+    }
+}

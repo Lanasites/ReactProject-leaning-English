@@ -1,0 +1,15 @@
+@import '../../style/vars';
+
+
+.main{
+    height: 90vh;
+    color: $font_color;
+
+    &__title{
+        text-transform: uppercase;
+        text-align: center;
+        font-size: $titile_size_desktop;
+        padding-bottom: 40px;
+    }
+}
+

@@ -1,0 +1,48 @@
+@import '../../style/vars';
+
+.header{
+    width: 100vw;
+    height: 90px;
+    display: flex;
+    font-family: $font_family;
+    padding: 30px;
+
+    &__logo{
+        display: flex;
+        width: 25vw;
+        align-items: center;
+        font-weight: 600;
+        gap: 10px;
+        font-size: 20px;
+    }
+
+    &__logo_img{
+        width: 120px;
+        height: 60px;
+        
+    }
+    &__menu {
+        display: flex;
+        justify-content: flex-end;
+        width: 75vw;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 300;
+    }
+
+    &__menu li{
+        display: inline-block;
+        padding-left: 130px;
+    }
+    &__menu_item {
+        list-style-type: none;
+    }
+    &__menu_item a{
+        white-space: nowrap;
+        color: $font_color;
+    }
+    &__menu_item :hover{
+        color: #2A3898;
+        font-weight: 600;
+    }
+}

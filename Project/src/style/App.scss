@@ -1,0 +1,21 @@
+@import './vars.scss';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: $font_color;
+}
+
+.app{
+    display: flex;
+    flex-direction: column;
+    background-color: $background_color;
+    gap: 60px;
+}
+
+.conteiner{
+    margin: auto;
+    width: 90vw;
+    font-family: $font_family;
+}
