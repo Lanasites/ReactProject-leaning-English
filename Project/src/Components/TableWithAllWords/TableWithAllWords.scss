@@ -5,29 +5,18 @@
     padding: 5px 10px;
   }
 @mixin cellWithLine {
-    border-left: solid 2px #707BC2;
+    border-left: solid 2px $color_lite_blue;
   }
-
-.table{
-    font-family: $font_family;
-    display: flex;
-    border: 2px solid #707BC2;
-    border-radius: 20px;
-    height: 80%;
-    &__headings_wrapper{
-        background-color: $background_color_akcent;
+@mixin LineOfTable {
+        display: grid;
         height: 55px;
         border-radius: 20px;
-        margin: 15px 10px;
-        width: 100%;
-    }
-    &__headings{
-        display: grid;
         grid-template-columns: 15% 25% 20% 20% 20%;
         gap: 10px;
         grid-auto-rows: 55px;
         font-size: 16px;
         align-items: center;
+        margin: 15px 10px;
         &__slovo{
             grid-column: 1 / 2;
             @include cell;
@@ -54,6 +43,21 @@
             @include cell;
             @include cellWithLine;
         }
+  }
+
+.table{
+    font-family: $font_family;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid $color_lite_blue;
+    border-radius: 20px;
+    &__headings_wrapper{ 
+        width: 100%;
+    }
+    &__headings{
+        background-color: $background_color_akcent;
+        @include LineOfTable;
+       
     }
 
     

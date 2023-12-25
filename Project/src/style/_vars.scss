@@ -3,8 +3,18 @@ $font_color: #0A0F32;
 $link_hover_color: #2A3898;
 $background_color: #F7F8FF;
 $color_button_red: #D64C4C;
+$color_lite_blue: #707BC2;
 $color_button_green: #3FB970;
 $background_color_akcent: #E1E4F5;
 
 $titile_size_desktop: 2.5vw;
+$text_size_desktop: 1.2vw;
 
+@mixin h2 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: $titile_size_desktop;
+    padding-bottom: 40px;
+    font-family: $font_family;
+    font-weight: 500;
+}

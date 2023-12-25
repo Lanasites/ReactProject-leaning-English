@@ -4,12 +4,43 @@
 .main{
     height: 90vh;
     color: $font_color;
+    height: max-content;
+    .firstPage{
+        .titlePart{
+            display: flex;
+            &__left{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                
+                &__h1{
+                    text-transform: uppercase;
+                    text-align: left;
+                    font-size: 49px;
+                    font-family: $font_family;
+                    font-weight: 500;
+                    width: 100%;
+                    color: $color_lite_blue;
+                }
+                &__text{
+                    font-size: $text_size_desktop;
+                }
 
-    &__title{
-        text-transform: uppercase;
-        text-align: center;
-        font-size: $titile_size_desktop;
-        padding-bottom: 40px;
+            }
+            &__right{
+                width: 100%;
+            }
+        }
+    }
+    .secondPage{
+        &__title{
+            @include h2;
+        }
+    }
+    .thirdPage{
+        &__title{
+            @include h2;
+        }
     }
 }
 
