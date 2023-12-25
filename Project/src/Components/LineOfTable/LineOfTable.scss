@@ -1,3 +1,22 @@
 @import '../../style/_vars.scss';
 @import '../TableWithAllWords/TableWithAllWords.scss';
 
+.LineOfTable{
+    border: 2px solid $background_color_akcent;
+    @include LineOfTable;
+    &:hover{
+        border: 2px solid $color_lite_blue;
+    }
+    &__edit{
+        display: flex;
+        gap: 25px;
+        justify-content: center;
+    }
+    &__edit img{
+        width: 20px;
+        height: auto;
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
+}
