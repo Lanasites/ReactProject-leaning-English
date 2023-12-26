@@ -17,14 +17,13 @@
         gap: 20px;
         font-size: 24px;
     }
-    &__slovo, &__trans, &__perevod, &__button{
+    &__slovo, &__perevod, &__button{
         color: white;
     }
-    // &__perevod{
-    //     display: none;
-    // }
+    &__trans{
+        color: $background_color_akcent;
+    }
     &__button{
-        // text-decoration: underline;
         border-bottom: 2px solid white;
     &:hover{
         font-weight: 500;
