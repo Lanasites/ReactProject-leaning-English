@@ -7,7 +7,6 @@ export default function SliderWorlds(){
     return(
         <>  
             <div className='sliderWorlds'>
-
             <div className='sliderWorlds__wrapper'>
                 <img src={left_arrow} alt="" />
                 <CardOfWord></CardOfWord>

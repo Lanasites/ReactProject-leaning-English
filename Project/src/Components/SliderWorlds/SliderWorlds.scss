@@ -5,4 +5,9 @@
         justify-content: center;
         gap: 30px;
     }
+    &__wrapper img{
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
 }
