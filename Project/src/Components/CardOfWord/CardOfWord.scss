@@ -1,0 +1,23 @@
+@import '../../style/_vars.scss';
+
+
+.cardOfWorld {
+    background-color: $color_lite_blue;
+    width: 560px;
+    height: 250px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+    &__info{
+        padding-bottom: 30px; 
+        display: flex;
+        gap: 20px;
+    }
+    &__slovo, &__trans, &__perevod{
+        color: white;
+    }
+
+}
