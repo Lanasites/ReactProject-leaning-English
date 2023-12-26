@@ -20,4 +20,11 @@
         color: white;
     }
 
+    &__perevod{
+        // text-decoration: underline;
+        border-bottom: 2px solid white;
+    &:hover{
+        font-weight: 500;
+    }}
+
 }
