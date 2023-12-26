@@ -15,16 +15,26 @@
         padding-bottom: 30px; 
         display: flex;
         gap: 20px;
+        font-size: 24px;
     }
-    &__slovo, &__trans, &__perevod{
+    &__slovo, &__trans, &__perevod, &__button{
         color: white;
     }
-
-    &__perevod{
+    // &__perevod{
+    //     display: none;
+    // }
+    &__button{
         // text-decoration: underline;
         border-bottom: 2px solid white;
     &:hover{
         font-weight: 500;
     }}
-
+    .active{
+        display: inline;
+        color: white;
+    }
+    .disactive{
+        display: none;
+        color: white;
+    }
 }
