@@ -21,12 +21,10 @@ export default function SliderWorlds(props){
     }
     const handlePrevCard = () =>{
         if (count === 0) {
-            console.log(count);
-            setcount(lengthArr);
+            setcount(lengthArr-1);
         }
         else
         {   
-            console.log(count);
             setcount(count - 1);
         }
     }
