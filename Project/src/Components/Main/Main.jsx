@@ -4,7 +4,7 @@ import SliderWorlds from '../SliderWorlds/SliderWorlds'
 import './Main.scss'
 import '../../style/App.scss'
 import feathers from '../../assets/feathers.png'
-
+import worldsArr from '../../assets/data/worlds.json'
 
 export default function Main(){
     return(
@@ -20,7 +20,9 @@ export default function Main(){
                         <img src={feathers} alt="" className='titlePart__right'/>
                         </div>
                         <h2 className='secondPage__title'>Темы для изучения</h2>
-                        <SliderThemes></SliderThemes>
+
+                            <SliderThemes 
+                            />     
                     </div>
                 </div>
                 <div className='secondPage'>
@@ -32,7 +34,9 @@ export default function Main(){
                 <div className='thirdPage'>
                     <div className='conteiner'>
                     <h2 className='thirdPage__title'>Тема овощи</h2>
-                    <SliderWorlds></SliderWorlds>
+                    <SliderWorlds 
+                        worldsArr = {worldsArr}
+                    />
                     </div>
                 </div>
             </div>
