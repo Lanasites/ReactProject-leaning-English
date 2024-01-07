@@ -33,16 +33,14 @@ export default function SliderWorlds(props){
     return(
         <>  
             <div className='sliderWorlds'>
+            <p className='sliderWorlds__count'>{count+1}/{lengthArr}</p>
             <div className='sliderWorlds__wrapper'>
                 <img src={left_arrow} alt="" onClick={handlePrevCard}/>
-                <div>
-                    <p className='sliderWorlds__count'>{count+1}/{lengthArr}</p>
                     <CardOfWord
                         englishWord = {worldsArr[count].english}
                         transcriptionWord = {worldsArr[count].transcription}
                         russianWord = {worldsArr[count].russian}
                     />
-                </div>
                 <img src={right_arrow} alt="" onClick={handleNextCard}/>
             </div>
             </div>

@@ -8,9 +8,6 @@ export default function CardOfWord(props){
         setShowPerevod('active');
         setShowButton('disactive')
     };
-    // const englishWord = props.englishWord || 'word';
-    // const transcriptionWord = props.transcriptionWord || '[транскрипция]';
-    // const russianWord = props.russianWord || 'перевод';
 
     return(
         <>
