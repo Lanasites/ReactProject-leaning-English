@@ -9,13 +9,21 @@ export default function SliderWorlds(props){
     const worldsArr = props.worldsArr;
     const lengthArr = worldsArr.length;
     const [count, setcount] = useState(1);
-    console.log(worldsArr, count, lengthArr);
+
+    const handleNextCard = () =>{
+        console.log(count);
+        setcount(count + 1);
+    }
+    const handlePrevCard = () =>{
+        console.log(count);
+        setcount(count - 1);
+    }
 
     return(
         <>  
             <div className='sliderWorlds'>
             <div className='sliderWorlds__wrapper'>
-                <img src={left_arrow} alt="" />
+                <img src={left_arrow} alt="" onClick={handlePrevCard}/>
                 <div>
                     <p className='sliderWorlds__count'>{count}/{lengthArr}</p>
 
@@ -25,7 +33,7 @@ export default function SliderWorlds(props){
                         russianWord = {worldsArr[count].russian}
                     />
                 </div>
-                <img src={right_arrow} alt="" />
+                <img src={right_arrow} alt="" onClick={handleNextCard}/>
             </div>
             </div>
         </>
