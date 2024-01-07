@@ -8,39 +8,57 @@ export default function SliderWorlds(props){
     
     const worldsArr = props.worldsArr;
     const lengthArr = worldsArr.length;
-    const [count, setcount] = useState(0);
+    const [currentIndex, setcurrentIndex] = useState(0);
 
     const handleNextCard = () =>{
-        if (count > lengthArr-2){
-            setcount(0);
+        if (currentIndex > lengthArr-2){
+            setcurrentIndex(0);
         }
         else
         {
-            setcount(count + 1);
+            setcurrentIndex(currentIndex + 1);
         }
     }
     const handlePrevCard = () =>{
-        if (count === 0) {
-            setcount(lengthArr-1);
+        if (currentIndex === 0) {
+            setcurrentIndex(lengthArr-1);
         }
         else
         {   
-            setcount(count - 1);
+            setcurrentIndex(currentIndex - 1);
         }
     }
     
-
     return(
         <>  
             <div className='sliderWorlds'>
-            <p className='sliderWorlds__count'>{count+1}/{lengthArr}</p>
-            <div className='sliderWorlds__wrapper'>
+            <p className='sliderWorlds__count'>{currentIndex+1}/{lengthArr}</p>
+            <div className='sliderWorlds__wrapper slider'>
                 <img src={left_arrow} alt="" onClick={handlePrevCard}/>
                     <CardOfWord
-                        englishWord = {worldsArr[count].english}
-                        transcriptionWord = {worldsArr[count].transcription}
-                        russianWord = {worldsArr[count].russian}
+                        currentIndex = {currentIndex}
+                        englishWord = {worldsArr[currentIndex].english}
+                        transcriptionWord = {worldsArr[currentIndex].transcription}
+                        russianWord = {worldsArr[currentIndex].russian}
                     />
+                    {/* <div className="slider-container">
+                        <div className="slider-track">
+                        {
+                            worldsArr.map((slide,index) =>(
+                                <div    key={index}
+                                        className={`slider-slide ${currentIndex === index ? 'active' : ''}`}
+                                >
+                                        <CardOfWord
+                                            // currentIndex = {currentIndex}
+                                            englishWord = {slide.english}
+                                            transcriptionWord = {slide.transcription}
+                                            russianWord = {slide.russian}
+                                        /> 
+                                </div>
+                            ))
+                        }
+                        </div>
+                    </div> */}
                 <img src={right_arrow} alt="" onClick={handleNextCard}/>
             </div>
             </div>

@@ -20,7 +20,6 @@ export default function Main(){
                         <img src={feathers} alt="" className='titlePart__right'/>
                         </div>
                         <h2 className='secondPage__title'>Темы для изучения</h2>
-
                             <SliderThemes 
                             />     
                     </div>
