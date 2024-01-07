@@ -1,23 +1,26 @@
 import './CardOfWord.scss'
 import { useState } from 'react'
 
-export default function CardOfWord(){
+export default function CardOfWord(props){
     const [showPerevod, setShowPerevod] = useState('disactive');
     const [showButton, setShowButton] = useState('active');
     const handleShowPerevod = () => {
         setShowPerevod('active');
         setShowButton('disactive')
     };
+    // const englishWord = props.englishWord || 'word';
+    // const transcriptionWord = props.transcriptionWord || '[транскрипция]';
+    // const russianWord = props.russianWord || 'перевод';
+
     return(
         <>
         <div className="cardOfWorld">
             <div className="cardOfWorld__info">
-                <span className='cardOfWorld__slovo'>tomato</span><span className='cardOfWorld__trans'>[təˈmɑːtəʊ]</span>
+                <span className='cardOfWorld__slovo'>{props.englishWord}</span><span className='cardOfWorld__trans'>{props.transcriptionWord}</span>
             </div>
-            <div className={`cardOfWorld__perevod ${showPerevod}`}>помидор</div>
+            <div className={`cardOfWorld__perevod ${showPerevod}`}>{props.russianWord}</div>
             <div className={`cardOfWorld__button ${showButton}`} onClick = {handleShowPerevod}>Смотреть перевод</div>
         </div>
         </>
     )
-
 }
