@@ -1,10 +1,9 @@
-import TableWithAllWords from '../TableWithAllWords/TableWithAllWords'
+
 import SliderThemes from '../SliderThemes/SliderThemes'
-import SliderWorlds from '../SliderWorlds/SliderWorlds'
 import './Main.scss'
 import '../../style/App.scss'
 import feathers from '../../assets/feathers.png'
-import worldsArr from '../../assets/data/worlds.json'
+
 
 export default function Main(){
     return(
@@ -24,20 +23,7 @@ export default function Main(){
                             />     
                     </div>
                 </div>
-                <div className='secondPage'>
-                    <div className='conteiner'>
-                        <h2 className='secondPage__title'>Список всех слов для изучения</h2>
-                        <TableWithAllWords></TableWithAllWords>
-                    </div>
-                </div>
-                <div className='thirdPage'>
-                    <div className='conteiner'>
-                    <h2 className='thirdPage__title'>Тема овощи</h2>
-                    <SliderWorlds 
-                        worldsArr = {worldsArr}
-                    />
-                    </div>
-                </div>
+
             </div>
         </>
     )
