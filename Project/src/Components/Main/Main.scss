@@ -5,9 +5,13 @@
     height: 90vh;
     color: $font_color;
     height: max-content;
+    min-height: calc(100vh - 180px);
+    margin-top: $height_menu;
+
     .firstPage{
         .titlePart{
             display: flex;
+            margin-top: 40px;
             &__left{
                 display: flex;
                 flex-direction: column;
@@ -32,15 +36,6 @@
             }
         }
     }
-    .secondPage{
-        &__title{
-            @include h2;
-        }
-    }
-    .thirdPage{
-        &__title{
-            @include h2;
-        }
-    }
+
 }
 

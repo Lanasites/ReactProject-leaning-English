@@ -44,13 +44,15 @@
             @include cellWithLine;
         }
   }
-
+.ListOfWords{
+    margin-top: $height_menu;
 .table{
     font-family: $font_family;
     display: flex;
     flex-direction: column;
     border: 2px solid $color_lite_blue;
     border-radius: 20px;
+    min-height: calc(100vh - 280px);
     &__headings_wrapper{ 
         width: 100%;
     }
@@ -60,6 +62,8 @@
        
     }
 
-    
-
+}  
+.title{
+    @include h2;
+}
 }

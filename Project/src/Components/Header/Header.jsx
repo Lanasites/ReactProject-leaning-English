@@ -1,16 +1,35 @@
 import './Header.scss'
 import logo from '../../assets/logo.png'
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+
+
 
 export default function Header(){
+    const [scrolled, setScrolled] = useState(false);
+    useEffect(() => {
+        const handleScroll = () => {
+          if (window.scrollY > 0) {
+            setScrolled(true);
+          } else {
+            setScrolled(false);
+          }
+        };
+    
+        window.addEventListener('scroll', handleScroll);
+    
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+      }, []);
+    
     return(
         <>
-            <header className='header'>
+            <header className={scrolled ? 'scrolled header' : 'header'}>
                 <div className='header__logo'>
-                    <Link to="/">
-                        <img src={logo} alt="English Easy to Learn" className='header__logo_img'/>
-                        <span>English Easy to Learn</span>
-                    </Link>
+                    <Link to="/"> <img src={logo} alt="English Easy to Learn" className='header__logo_img'/> </Link>
+                    <Link to="/"> <span>English Easy to Learn</span></Link>
+                    
                 </div>
                 <nav className='header__menu'>
                     <ul>

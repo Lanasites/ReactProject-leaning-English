@@ -1,5 +1,8 @@
-
+@import '../../style/vars';
 .sliderWorlds{
+    min-height: calc(100vh - 180px);
+    margin-top:$height_menu;
+
     &__wrapper{
         display: flex;
         justify-content: center;
@@ -14,6 +17,9 @@
     &__count{
         text-align: center;
         padding-bottom: 15px;
+    }
+    .title{
+        @include h2;
     }
 }
 

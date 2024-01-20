@@ -32,35 +32,36 @@ export default function SliderWorlds(props){
     return(
         <>  
             <div className='sliderWorlds'>
-            <p className='sliderWorlds__count'>{currentIndex+1}/{lengthArr}</p>
-            <div className='sliderWorlds__wrapper slider'>
-                <img src={left_arrow} alt="" onClick={handlePrevCard}/>
-                    <CardOfWord
-                        currentIndex = {currentIndex}
-                        englishWord = {worldsArr[currentIndex].english}
-                        transcriptionWord = {worldsArr[currentIndex].transcription}
-                        russianWord = {worldsArr[currentIndex].russian}
-                    />
-                    {/* <div className="slider-container">
-                        <div className="slider-track">
-                        {
-                            worldsArr.map((slide,index) =>(
-                                <div    key={index}
-                                        className={`slider-slide ${currentIndex === index ? 'active' : ''}`}
-                                >
-                                        <CardOfWord
-                                            // currentIndex = {currentIndex}
-                                            englishWord = {slide.english}
-                                            transcriptionWord = {slide.transcription}
-                                            russianWord = {slide.russian}
-                                        /> 
-                                </div>
-                            ))
-                        }
-                        </div>
-                    </div> */}
-                <img src={right_arrow} alt="" onClick={handleNextCard}/>
-            </div>
+                <h2 className='title'>Режим заучивания слов</h2>
+                <p className='sliderWorlds__count'>{currentIndex+1}/{lengthArr}</p>
+                <div className='sliderWorlds__wrapper slider'>
+                    <img src={left_arrow} alt="" onClick={handlePrevCard}/>
+                        <CardOfWord
+                            currentIndex = {currentIndex}
+                            englishWord = {worldsArr[currentIndex].english}
+                            transcriptionWord = {worldsArr[currentIndex].transcription}
+                            russianWord = {worldsArr[currentIndex].russian}
+                        />
+                        {/* <div className="slider-container">
+                            <div className="slider-track">
+                            {
+                                worldsArr.map((slide,index) =>(
+                                    <div    key={index}
+                                            className={`slider-slide ${currentIndex === index ? 'active' : ''}`}
+                                    >
+                                            <CardOfWord
+                                                // currentIndex = {currentIndex}
+                                                englishWord = {slide.english}
+                                                transcriptionWord = {slide.transcription}
+                                                russianWord = {slide.russian}
+                                            /> 
+                                    </div>
+                                ))
+                            }
+                            </div>
+                        </div> */}
+                    <img src={right_arrow} alt="" onClick={handleNextCard}/>
+                </div>
             </div>
         </>
     )
