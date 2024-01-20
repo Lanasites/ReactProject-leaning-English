@@ -37,6 +37,7 @@ export default function SliderWorlds(props){
                 <div className='sliderWorlds__wrapper slider'>
                     <img src={left_arrow} alt="" onClick={handlePrevCard}/>
                         <CardOfWord
+                            key = {currentIndex}
                             currentIndex = {currentIndex}
                             englishWord = {worldsArr[currentIndex].english}
                             transcriptionWord = {worldsArr[currentIndex].transcription}
