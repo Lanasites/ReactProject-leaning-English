@@ -40,6 +40,10 @@
     &__menu li{
         display: inline-block;
         padding-left: 130px;
+        .active{
+            color: #2A3898;
+            font-weight: 600;
+        }
     }
     &__menu_item {
         list-style-type: none;
