@@ -9,6 +9,7 @@ export default function SliderWorlds(props){
     const worldsArr = props.worldsArr;
     const lengthArr = worldsArr.length;
     const [currentIndex, setcurrentIndex] = useState(0);
+    const[studiedNum, setStudiedNum]=useState(0)
 
     const handleNextCard = () =>{
         if (currentIndex > lengthArr-2){
@@ -21,12 +22,15 @@ export default function SliderWorlds(props){
     }
     const handlePrevCard = () =>{
         if (currentIndex === 0) {
-            setcurrentIndex(lengthArr-1);
+            setcurrentIndex(lengthArr - 1);
         }
         else
         {   
             setcurrentIndex(currentIndex - 1);
         }
+    }
+    const studiedNumber = ()=>{
+        setStudiedNum(studiedNum + 1);
     }
     
     return(
@@ -42,27 +46,11 @@ export default function SliderWorlds(props){
                             englishWord = {worldsArr[currentIndex].english}
                             transcriptionWord = {worldsArr[currentIndex].transcription}
                             russianWord = {worldsArr[currentIndex].russian}
+                            fun = {studiedNumber}
                         />
-                        {/* <div className="slider-container">
-                            <div className="slider-track">
-                            {
-                                worldsArr.map((slide,index) =>(
-                                    <div    key={index}
-                                            className={`slider-slide ${currentIndex === index ? 'active' : ''}`}
-                                    >
-                                            <CardOfWord
-                                                // currentIndex = {currentIndex}
-                                                englishWord = {slide.english}
-                                                transcriptionWord = {slide.transcription}
-                                                russianWord = {slide.russian}
-                                            /> 
-                                    </div>
-                                ))
-                            }
-                            </div>
-                        </div> */}
                     <img src={right_arrow} alt="" onClick={handleNextCard}/>
                 </div>
+                <div className='studied'>Изучено {studiedNum}</div>
             </div>
         </>
     )

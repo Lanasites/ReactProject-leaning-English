@@ -6,9 +6,10 @@ export default function CardOfWord(props){
     const [showButton, setShowButton] = useState('active');
     const handleShowPerevod = () => {
         setShowPerevod('active');
-        setShowButton('disactive')
+        setShowButton('disactive');
+        props.fun();
     };
-
+    console.log(props);
     return(
         <>
             <div className="cardOfWorld">
