@@ -1,5 +1,5 @@
 import './CardOfWord.scss'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 export default function CardOfWord(props){
     const [showPerevod, setShowPerevod] = useState('disactive');
@@ -9,7 +9,11 @@ export default function CardOfWord(props){
         setShowButton('disactive');
         props.fun();
     };
-    console.log(props);
+    const buttonRef = useRef(null);
+    useEffect(() => {
+        buttonRef.current.focus();
+      });
+    
     return(
         <>
             <div className="cardOfWorld">
@@ -18,7 +22,7 @@ export default function CardOfWord(props){
                     <span className='cardOfWorld__trans'>{props.transcriptionWord}</span>
                 </div>
                 <div className={`cardOfWorld__perevod ${showPerevod}`}>{props.russianWord}</div>
-                <div className={`cardOfWorld__button ${showButton}`} onClick = {handleShowPerevod}>Смотреть перевод</div>
+                <button className={`cardOfWorld__button ${showButton}`} onClick = {handleShowPerevod} ref={buttonRef}>Смотреть перевод</button>
             </div>
         </>
     )
