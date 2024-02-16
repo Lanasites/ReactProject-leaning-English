@@ -9,7 +9,8 @@ export default function SliderWorlds(props){
     const worldsArr = props.worldsArr;
     const lengthArr = worldsArr.length;
     const [currentIndex, setcurrentIndex] = useState(0);
-    const[studiedNum, setStudiedNum]=useState(0)
+    const[studiedNum, setStudiedNum]=useState(0);
+    const[studiedWords, setStudiedWords]=useState([]);
 
     const handleNextCard = () =>{
         if (currentIndex > lengthArr-2){
@@ -30,7 +31,10 @@ export default function SliderWorlds(props){
         }
     }
     const studiedNumber = ()=>{
-        setStudiedNum(studiedNum + 1);
+        if(!studiedWords.includes(currentIndex)){
+            setStudiedWords([...studiedWords, currentIndex])
+            setStudiedNum(studiedNum + 1);
+        }
     }
     
     return(
@@ -47,6 +51,7 @@ export default function SliderWorlds(props){
                             transcriptionWord = {worldsArr[currentIndex].transcription}
                             russianWord = {worldsArr[currentIndex].russian}
                             fun = {studiedNumber}
+                            isStudied = {studiedWords.includes(currentIndex)}
                         />
                     <img src={right_arrow} alt="" onClick={handleNextCard}/>
                 </div>

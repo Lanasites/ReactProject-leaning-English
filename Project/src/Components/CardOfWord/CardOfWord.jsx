@@ -2,17 +2,27 @@ import './CardOfWord.scss'
 import { useState, useRef, useEffect } from 'react'
 
 export default function CardOfWord(props){
-    const [showPerevod, setShowPerevod] = useState('disactive');
-    const [showButton, setShowButton] = useState('active');
+    const [showPerevod, setShowPerevod] = useState(props.isStudied ? 'active':'disactive');
+    const [showButton, setShowButton] = useState(props.isStudied ? 'disactive':'active');
+
     const handleShowPerevod = () => {
         setShowPerevod('active');
         setShowButton('disactive');
         props.fun();
     };
+
     const buttonRef = useRef(null);
+
     useEffect(() => {
-        buttonRef.current.focus();
-      });
+        if (showButton === 'active'){
+            buttonRef.current&&buttonRef.current.focus();
+        }
+      },[showButton]);
+
+    useEffect(() => {
+       setShowButton(props.isStudied ? 'disactive':'active');
+       setShowPerevod(props.isStudied ? 'active':'disactive');
+    },[props.isStudied]);
     
     return(
         <>
