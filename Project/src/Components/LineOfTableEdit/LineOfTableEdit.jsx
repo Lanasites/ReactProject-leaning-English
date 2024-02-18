@@ -1,0 +1,83 @@
+import './LineOfTableEdit.scss';
+import save_img from '../../assets/save.svg';
+import cancel_img from '../../assets/cancel.svg';
+import { useEffect, useState } from 'react';
+
+export default function LineOfTableEdit({world, setEditStatus}){
+    const[slovo,setSlovo]=useState(world.slovo);
+    const[perevod,setPerevod]=useState(world.perevod);
+    const[trans,setTrans]=useState(world.trans);
+    const[tema,setTema]=useState(world.tema);
+    const[errorSlovo,setErrorSlovo]=useState(false);
+    const[errorPerevod,setErrorPerevod]=useState(false);
+    const[errorTrans,setErrorTrans]=useState(false);
+    const[errorTema,setErrorTema]=useState(false);
+    const[button, setButton]=useState(false);
+
+    useEffect(()=>{
+        setSlovo(slovo)
+        setPerevod(perevod)
+        setTrans(trans)
+        setTema(tema)
+    },[world])
+
+    const saveInfo=(e)=>{
+        e.preventDefault();
+        console.log('слово сохранено', 'slovo:', slovo, ', perevod:',perevod,', trans:',trans,', tema:',tema);
+        setEditStatus(false);
+    }
+    const validationSlovo=(e)=>{
+        if (e.target.value==='') {
+            setErrorSlovo(true);
+            setButton(true); }
+        else {
+            setErrorSlovo(false);
+            setButton(false); }
+            
+        setSlovo(e.target.value)
+    }
+    const validationPerevod=(e)=>{
+        if (e.target.value==='') {
+            setErrorPerevod(true);
+            setButton(true); }
+        else{
+            setErrorPerevod(false);
+            setButton(false); }
+
+        setPerevod(e.target.value)
+    }
+    const validationTrans=(e)=>{
+        if (e.target.value===''){
+            setErrorTrans(true);
+            setButton(true); }
+        else {
+            setErrorTrans(false);
+            setButton(false);}
+
+        setTrans(e.target.value)
+    }
+    const validationTema=(e)=>{
+        if (e.target.value===''){
+            setErrorTema(true);
+            setButton(true); }
+        else {
+            setErrorTema(false);
+            setButton(false);}
+       
+            setTema(e.target.value)
+    }
+    return(
+        <form className='LineOfTable'>
+            <input type='text' className={(errorSlovo)?'LineOfTable__slovo error':'LineOfTable__slovo LineOfTable__input'} value = {slovo} onChange={validationSlovo}/>
+            <input type='text' className={(errorPerevod)?'LineOfTable__perevod error':'LineOfTable__perevod LineOfTable__input'} value = {perevod} onChange={validationPerevod}/>
+            <input type='text' className={(errorTrans)?'LineOfTable__trans error':'LineOfTable__trans LineOfTable__input'} value = {trans} onChange={validationTrans}/>
+            <input type='text' className={(errorTema)?'LineOfTable__tema error':'LineOfTable__tema LineOfTable__input'} value = {tema} onChange={validationTema}/>
+            <div className='LineOfTable__edit'>
+                <button type = 'submit' onClick={saveInfo} disabled={button} title='Сохранить'><img src={save_img} alt="" /></button>
+                {/* <img src={save_img} alt="" onClick={saveInfo} disabled={button}/> */}
+                <img src={cancel_img} alt="" title='Отменить редактирование' onClick={()=>setEditStatus(false)}/>
+            </div>
+        </form>
+    )
+
+}
