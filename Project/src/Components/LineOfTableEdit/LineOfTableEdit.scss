@@ -33,3 +33,11 @@
 .error{
     border: 2px solid red;
 }
+.error-text{
+    height: max-content;
+    color: red;
+    text-align: center;
+    span{
+        color: red; 
+    }
+}

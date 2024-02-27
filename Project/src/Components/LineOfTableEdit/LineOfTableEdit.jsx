@@ -14,6 +14,9 @@ export default function LineOfTableEdit({world, setEditStatus}){
     const[errorTema,setErrorTema]=useState(false);
     const[button, setButton]=useState(false);
 
+    const slovoPattern = /^[a-zA-Z ]{1,30}$/;
+    const perevodPattern = /^[а-яА-Я ]{1,30}$/;
+
     useEffect(()=>{
         setSlovo(slovo)
         setPerevod(perevod)
@@ -27,7 +30,8 @@ export default function LineOfTableEdit({world, setEditStatus}){
         setEditStatus(false);
     }
     const validationSlovo=(e)=>{
-        if (e.target.value==='') {
+        const slovo = e.target.value;
+        if (slovo===''||!slovo.match(slovoPattern)) {
             setErrorSlovo(true);
             setButton(true); }
         else {
@@ -37,7 +41,8 @@ export default function LineOfTableEdit({world, setEditStatus}){
         setSlovo(e.target.value)
     }
     const validationPerevod=(e)=>{
-        if (e.target.value==='') {
+        const perevod = e.target.value;
+        if (perevod===''||!perevod.match(perevodPattern)) {
             setErrorPerevod(true);
             setButton(true); }
         else{
@@ -67,6 +72,7 @@ export default function LineOfTableEdit({world, setEditStatus}){
             setTema(e.target.value)
     }
     return(
+        <>
         <form className='LineOfTable'>
             <input type='text' className={(errorSlovo)?'LineOfTable__slovo error':'LineOfTable__slovo LineOfTable__input'} value = {slovo} onChange={validationSlovo}/>
             <input type='text' className={(errorPerevod)?'LineOfTable__perevod error':'LineOfTable__perevod LineOfTable__input'} value = {perevod} onChange={validationPerevod}/>
@@ -78,6 +84,20 @@ export default function LineOfTableEdit({world, setEditStatus}){
                 <img src={cancel_img} alt="" title='Отменить редактирование' onClick={()=>setEditStatus(false)}/>
             </div>
         </form>
-    )
-
+        <div className='error-text' hidden={(errorSlovo||errorPerevod||errorTema||errorTrans)?false:true}> 
+            {(errorSlovo)?(
+                <span>
+                    При написании слова можно использовать только латинские буквы<br />
+                </span>
+            ):''}  
+            {(errorPerevod)?(
+                <span>
+                    При написании перевода можно исполльзвать только кириллицу<br />
+                </span>
+            ):''} 
+            Пустые значения полей недопустимы
+        </div>
+        </>
+        )
+    
 }
