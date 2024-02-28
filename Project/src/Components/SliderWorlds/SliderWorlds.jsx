@@ -2,11 +2,14 @@ import CardOfWord from '../CardOfWord/CardOfWord'
 import './SliderWorlds.scss'
 import left_arrow from '../../assets/left.svg'
 import right_arrow from '../../assets/right.svg'
-import { useState, useEffect } from 'react'
+import { useState, useContext} from 'react'
+import { WordsContext} from '../../Context/WordsContext'
 
-export default function SliderWorlds(props){
-    
-    const worldsArr = props.worldsArr;
+
+export default function SliderWorlds(){
+    const {dataServer,setDataServer} = useContext(WordsContext);
+    const worldsArr = dataServer;
+    // const worldsArr = props.worldsArr;
     const lengthArr = worldsArr.length;
     const [currentIndex, setcurrentIndex] = useState(0);
     const[studiedNum, setStudiedNum]=useState(0);

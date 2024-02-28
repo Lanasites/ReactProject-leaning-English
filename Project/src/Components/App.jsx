@@ -24,7 +24,8 @@ function App() {
           <Routes>
             <Route path="/tablewithworlds" element={<TablePage />} />
             <Route path="/" element={<HomePage />} />
-            <Route path="/learning" element={<SliderPage worldsArr = {worldsArr}/> } />
+            {/* <Route path="/learning" element={<SliderPage worldsArr = {worldsArr}/> } /> */}
+            <Route path="/learning" element={<SliderPage /> } />
             <Route path='*' element={<ErrorPage/>}/>
           </Routes>
 
