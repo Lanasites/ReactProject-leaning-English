@@ -1,10 +1,10 @@
 
 import Header from '../Components/Header/Header'
 import Footer from '../Components/Footer/Footer.jsx'
-import Main from '../Components/Main/Main.jsx'
-import TableWithAllWords from '../Components/TableWithAllWords/TableWithAllWords.jsx'
-import SliderWorlds from '../Components/SliderWorlds/SliderWorlds.jsx'
-import Error404 from './Error404/Error404.jsx'
+import HomePage from '../Pages/HomePage/HomePage.jsx'
+import TablePage from '../Pages/TablePage/TablePage.jsx'
+import SliderPage from '../Pages/SliderPage/SliderPage.jsx'
+import ErrorPage from '../Pages/ErrorPage/ErrorPage.jsx'
 import {
   BrowserRouter as Router,
   Routes,
@@ -20,12 +20,12 @@ function App() {
     <Router>
         <div className='app'>
           <Header/>
-          
+
           <Routes>
-            <Route path="/tablewithworlds" element={<TableWithAllWords />} />
-            <Route path="/" element={<Main />} />
-            <Route path="/learning" element={<SliderWorlds worldsArr = {worldsArr}/> } />
-            <Route path='*' element={<Error404/>}/>
+            <Route path="/tablewithworlds" element={<TablePage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/learning" element={<SliderPage worldsArr = {worldsArr}/> } />
+            <Route path='*' element={<ErrorPage/>}/>
           </Routes>
 
           <Footer/>
