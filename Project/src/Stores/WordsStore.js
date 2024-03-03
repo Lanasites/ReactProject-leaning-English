@@ -1,36 +1,37 @@
-import { action, observable, makeObservable } from 'mobx';
+import { action, observable, makeAutoObservable, computed } from 'mobx';
 
 class WordsStore {
     words = []
-    isLoading = false
+    isLoaded = false
     error = null
 
     constructor() {
-        makeObservable(this, {
+        makeAutoObservable(this, {
             words: observable,
-            isLoading: observable,
+            isLoaded: observable,
             error: observable,
-            fetchWords: action,
+            loadWords: action,
             updateWord: action,
             addWord: action,
             removeWord: action
         })
     }
 
-    fetchWords = async () => {
-        this.isLoading = true;
-
+    loadWords = async () => {
+        // if (this.isLoaded){
+        //     return;
+        // }
         try {
-            const response = await fetch('http://itgirlschool.justmakeit.ru/api/words');
+            response = await fetch('http://itgirlschool.justmakeit.ru/api/words');
             if (response.ok) {
                 const data = await response.json();
                 this.words = data;
-                this.isLoading = false;
+                this.isLoaded = true;
             } else {
                 throw new Error('Ошибка загрузки данных');
             }
         } catch (error) {
-            this.isLoading = false;
+            this.isLoaded = false;
             this.error = error;
         }
     }

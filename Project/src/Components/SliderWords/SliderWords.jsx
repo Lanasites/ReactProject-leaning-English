@@ -1,12 +1,23 @@
 import CardOfWord from '../CardOfWord/CardOfWord'
-import './SliderWorlds.scss'
+import './SliderWords.scss'
 import left_arrow from '../../assets/left.svg'
 import right_arrow from '../../assets/right.svg'
 import { useState, useEffect } from 'react'
+import { inject, observer } from 'mobx-react'
 
-export default function SliderWorlds(props){
-    
-    const worldsArr = props.worldsArr;
+
+function SliderWords({words}){
+
+    // useEffect(() => {
+    //     console.log('загрузка слов в слайдер',words);
+    // }, [words]);
+
+    if (words.length<=0||!words) {
+        console.error('Ничего не загрузилось')
+        return <h1 className='sliderWorlds'>Loading...</h1>;
+    }
+
+    const worldsArr = words;
     const lengthArr = worldsArr.length;
     const [currentIndex, setcurrentIndex] = useState(0);
     const[studiedNum, setStudiedNum]=useState(0);
@@ -61,3 +72,15 @@ export default function SliderWorlds(props){
     )
 
 }
+
+export default inject(({wordsStore})=>{
+    const {words, isLoaded, loadWords}=wordsStore;
+    useEffect(()=>{
+        if (!isLoaded){
+            console.log('загрузок еще не было');
+            loadWords();
+        }else
+        console.log('загрузки были');
+    })
+    return {words};
+})(observer(SliderWords));

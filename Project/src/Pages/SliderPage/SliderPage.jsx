@@ -1,4 +1,4 @@
-import SliderWorlds from "../../Components/SliderWorlds/SliderWorlds"
+import SliderWorlds from "../../Components/SliderWords/SliderWords"
 
 export default function SliderPage(props){
     const worldsArr = props.worldsArr;
