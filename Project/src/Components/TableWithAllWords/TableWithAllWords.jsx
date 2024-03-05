@@ -8,7 +8,7 @@ import { useContext} from 'react'
 import { WordsContext} from '../../Context/WordsContextProvider'
 
 export default function TableWithAllWords(){
-    const {dataServer,setDataServer} = useContext(WordsContext);
+    const {dataServer,setDataServer, addWord, deleteWord, updateWord} = useContext(WordsContext);
     return(
         <>  
         <div className='ListOfWords'>
@@ -26,6 +26,7 @@ export default function TableWithAllWords(){
                             return (
                             < LineOfTable
                                 key = {world.id}
+                                id = {world.id}
                                 slovo = {world.english}
                                 perevod = {world.russian}
                                 trans = {world.transcription}
