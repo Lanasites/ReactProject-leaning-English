@@ -3,7 +3,7 @@ import GET from "../Services/GET";
 
 export const WordsContext = createContext();
 
-export function WordsContextComponent({app}){
+export function WordsContextProvider({app}){
     const [dataServer, setDataServer]=useState(null);
     const value = {dataServer, setDataServer};
 
@@ -21,7 +21,7 @@ export function WordsContextComponent({app}){
             <h1>Loading...</h1>
         )
     }
-    // console.log('данные, которые в контексте',value);
+    console.log('данные, которые в контексте',value);
     return(
         <WordsContext.Provider value={value}>
             {app}

@@ -9,29 +9,31 @@ import {
   BrowserRouter as Router,
   Routes,
   Route
-} from "react-router-dom";
+} from "react-router-dom"
 
 import '../Style/App.scss'
+
+import { WordsContextProvider } from '../Context/WordsContextProvider.jsx'
 // import worldsArr from '../assets/data/worlds.json'
 
 function App() {
   return (
     <>
-    <Router>
-        <div className='app'>
-          <Header/>
-
-          <Routes>
-            <Route path="/tablewithwords" element={<TablePage />} />
-            <Route path="/" element={<HomePage />} />
-            {/* <Route path="/learning" element={<SliderPage worldsArr = {worldsArr}/> } /> */}
-            <Route path="/learning" element={<SliderPage /> } />
-            <Route path='*' element={<ErrorPage/>}/>
-          </Routes>
-
-          <Footer/>
-        </div>
-    </Router>
+    <WordsContextProvider>
+      <Router>
+          <div className='app'>
+            <Header/>
+            <Routes>
+              <Route path="/tablewithwords" element={<TablePage />} />
+              <Route path="/" element={<HomePage />} />
+            {/* <Route path="/learning" element={<SliderPage worldsArr = {worldsArr}/> } /> */ }
+              <Route path="/learning" element={<SliderPage /> } />
+              <Route path='*' element={<ErrorPage/>}/>
+            </Routes>
+            <Footer/>
+          </div>
+      </Router>
+    </WordsContextProvider>
     </>
   )
 }

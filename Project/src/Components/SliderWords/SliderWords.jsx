@@ -3,11 +3,11 @@ import './SliderWords.scss'
 import left_arrow from '../../assets/left.svg'
 import right_arrow from '../../assets/right.svg'
 import { useState, useContext} from 'react'
-import { WordsContext} from '../../Context/WordsContext'
+import { WordsContext} from '../../Context/WordsContextProvider'
 
 
 export default function SliderWords(){
-    // console.log('компонент слайдера');
+    console.log('компонент слайдера');
     const {dataServer,setDataServer} = useContext(WordsContext);
     console.log('данные в слайдере',dataServer);
     const worldsArr = dataServer;
