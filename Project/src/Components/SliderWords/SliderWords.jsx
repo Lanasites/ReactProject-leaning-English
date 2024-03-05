@@ -7,11 +7,8 @@ import { WordsContext} from '../../Context/WordsContextProvider'
 
 
 export default function SliderWords(){
-    console.log('компонент слайдера');
     const {dataServer,setDataServer} = useContext(WordsContext);
-    console.log('данные в слайдере',dataServer);
     const worldsArr = dataServer;
-    // const worldsArr = props.worldsArr;
     const lengthArr = worldsArr.length;
     const [currentIndex, setcurrentIndex] = useState(0);
     const[studiedNum, setStudiedNum]=useState(0);

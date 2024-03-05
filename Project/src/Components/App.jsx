@@ -14,7 +14,6 @@ import {
 import '../Style/App.scss'
 
 import { WordsContextProvider } from '../Context/WordsContextProvider.jsx'
-// import worldsArr from '../assets/data/worlds.json'
 
 function App() {
   return (
@@ -26,7 +25,6 @@ function App() {
             <Routes>
               <Route path="/tablewithwords" element={<TablePage />} />
               <Route path="/" element={<HomePage />} />
-            {/* <Route path="/learning" element={<SliderPage worldsArr = {worldsArr}/> } /> */ }
               <Route path="/learning" element={<SliderPage /> } />
               <Route path='*' element={<ErrorPage/>}/>
             </Routes>
