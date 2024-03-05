@@ -18,11 +18,12 @@ class WordsStore {
     }
 
     loadWords = async () => {
-        // if (this.isLoaded){
-        //     return;
-        // }
+        if (this.isLoaded){
+            return;
+        }
+        
         try {
-            response = await fetch('http://itgirlschool.justmakeit.ru/api/words');
+        const response = await fetch('http://itgirlschool.justmakeit.ru/api/words');
             if (response.ok) {
                 const data = await response.json();
                 this.words = data;
@@ -30,8 +31,9 @@ class WordsStore {
             } else {
                 throw new Error('Ошибка загрузки данных');
             }
-        } catch (error) {
-            this.isLoaded = false;
+        } 
+        catch (error) {
+            // this.isLoaded = false;
             this.error = error;
         }
     }

@@ -8,10 +8,6 @@ import { inject, observer } from 'mobx-react'
 
 function SliderWords({words}){
 
-    // useEffect(() => {
-    //     console.log('загрузка слов в слайдер',words);
-    // }, [words]);
-
     if (words.length<=0||!words) {
         console.error('Ничего не загрузилось')
         return <h1 className='sliderWorlds'>Loading...</h1>;
@@ -47,7 +43,7 @@ function SliderWords({words}){
             setStudiedNum(studiedNum + 1);
         }
     }
-    
+
     return(
         <>  
             <div className='sliderWorlds'>
@@ -74,13 +70,9 @@ function SliderWords({words}){
 }
 
 export default inject(({wordsStore})=>{
-    const {words, isLoaded, loadWords}=wordsStore;
-    useEffect(()=>{
-        if (!isLoaded){
-            console.log('загрузок еще не было');
-            loadWords();
-        }else
-        console.log('загрузки были');
-    })
-    return {words};
+    const {words, isLoaded, loadWords} = wordsStore;
+    useEffect(() => {
+                loadWords();
+    },[isLoaded]);
+    return {words, isLoaded, loadWords};
 })(observer(SliderWords));
