@@ -3,10 +3,12 @@ import '../../style/App.scss'
 
 import LineOfTable from '../LineOfTable/LineOfTable.jsx'
 import Button from'../Button/Button.jsx'
-import worldsArr from '../../assets/data/worlds.json'
+// import worldsArr from '../../assets/data/worlds.json'
+import { useContext} from 'react'
+import { WordsContext} from '../../Context/WordsContextProvider'
 
 export default function TableWithAllWords(){
- 
+    const {dataServer,setDataServer} = useContext(WordsContext);
     return(
         <>  
         <div className='ListOfWords'>
@@ -20,7 +22,7 @@ export default function TableWithAllWords(){
                             <div className='table__headings__tema'>Тема</div>
                             <div className='table__headings__edit'>Редактировать/Удалить </div>
                         </div>
-                        {worldsArr.map((world) => {
+                        {dataServer.map((world) => {
                             return (
                             < LineOfTable
                                 key = {world.id}

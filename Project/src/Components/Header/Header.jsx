@@ -34,7 +34,7 @@ export default function Header(){
                 <nav className='header__menu'>
                     <ul>
                         <li className='header__menu_item'><NavLink to="/">Главная страница</NavLink></li>
-                        <li className='header__menu_item'><NavLink to="/tablewithworlds">Список всех слов</NavLink></li>
+                        <li className='header__menu_item'><NavLink to="/tablewithwords">Список всех слов</NavLink></li>
                         <li className='header__menu_item'><NavLink to="/learning">Карточки для изучения</NavLink></li>
                     </ul>
                     
