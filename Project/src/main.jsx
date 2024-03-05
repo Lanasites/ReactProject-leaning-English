@@ -6,9 +6,7 @@ import { WordsContextComponent } from './Context/WordsContext'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
         <WordsContextComponent>
             <App />
         </WordsContextComponent>
-    </React.StrictMode>
 )

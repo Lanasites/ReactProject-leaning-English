@@ -12,7 +12,7 @@ import {
 } from "react-router-dom";
 
 import '../Style/App.scss'
-import worldsArr from '../assets/data/worlds.json'
+// import worldsArr from '../assets/data/worlds.json'
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
           <Header/>
 
           <Routes>
-            <Route path="/tablewithworlds" element={<TablePage />} />
+            <Route path="/tablewithwords" element={<TablePage />} />
             <Route path="/" element={<HomePage />} />
             {/* <Route path="/learning" element={<SliderPage worldsArr = {worldsArr}/> } /> */}
             <Route path="/learning" element={<SliderPage /> } />

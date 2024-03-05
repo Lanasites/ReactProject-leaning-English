@@ -1,11 +1,11 @@
-import SliderWorlds from "../../Components/SliderWorlds/SliderWorlds"
+import SliderWords from "../../Components/SliderWords/SliderWords"
 
 export default function SliderPage(){
     // const worldsArr = props.worldsArr;
     return(
         <>  
-            {/* <SliderWorlds worldsArr = {worldsArr}/> */}
-            <SliderWorlds/>
+            {/* <SliderWords worldsArr = {worldsArr}/> */}
+            <SliderWords/>
         </>
     )
 }

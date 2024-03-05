@@ -4,7 +4,7 @@ import GET from "../Services/GET";
 export const WordsContext = createContext();
 
 export function WordsContextComponent({app}){
-    const [dataServer, setDataServer]=useState(false);
+    const [dataServer, setDataServer]=useState(null);
     const value = {dataServer, setDataServer};
 
     useEffect(()=>{
@@ -16,11 +16,12 @@ export function WordsContextComponent({app}){
         setDataServer(dataWordServer);
     }
    
-    if (!dataServer){
+    if (dataServer===null||dataServer===''||!dataServer){
         return(
             <h1>Loading...</h1>
         )
     }
+    // console.log('данные, которые в контексте',value);
     return(
         <WordsContext.Provider value={value}>
             {app}

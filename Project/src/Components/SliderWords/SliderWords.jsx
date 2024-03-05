@@ -1,13 +1,15 @@
 import CardOfWord from '../CardOfWord/CardOfWord'
-import './SliderWorlds.scss'
+import './SliderWords.scss'
 import left_arrow from '../../assets/left.svg'
 import right_arrow from '../../assets/right.svg'
 import { useState, useContext} from 'react'
 import { WordsContext} from '../../Context/WordsContext'
 
 
-export default function SliderWorlds(){
+export default function SliderWords(){
+    // console.log('компонент слайдера');
     const {dataServer,setDataServer} = useContext(WordsContext);
+    console.log('данные в слайдере',dataServer);
     const worldsArr = dataServer;
     // const worldsArr = props.worldsArr;
     const lengthArr = worldsArr.length;
@@ -42,10 +44,10 @@ export default function SliderWorlds(){
     
     return(
         <>  
-            <div className='sliderWorlds'>
+            <div className='sliderWords'>
                 <h2 className='title'>Режим заучивания слов</h2>
-                <p className='sliderWorlds__count'>{currentIndex+1}/{lengthArr}</p>
-                <div className='sliderWorlds__wrapper slider'>
+                <p className='sliderWords__count'>{currentIndex+1}/{lengthArr}</p>
+                <div className='sliderWords__wrapper slider'>
                     <img src={left_arrow} alt="" onClick={handlePrevCard}/>
                         <CardOfWord
                             key = {currentIndex}
