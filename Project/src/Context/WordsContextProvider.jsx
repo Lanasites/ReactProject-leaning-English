@@ -2,6 +2,7 @@ import { useState, createContext, useEffect } from "react";
 import GET from "../Services/GET";
 import DELETE from "../Services/DELETE";
 import UPDATE from "../Services/UPDATE";
+import ADD from '../Services/ADD'
 
 export const WordsContext = createContext();
 
@@ -24,7 +25,7 @@ export function WordsContextProvider({children}){
         )
     }
     
-    const addWord = ()=>{
+    const addWord = async()=>{
         const newId = `${Math.max(...dataServer.map(item => item.id)) + 1}`;
         const newWord ={
             id: newId,
@@ -36,11 +37,15 @@ export function WordsContextProvider({children}){
         dataServer.push(newWord);
         console.log('Добавление нового слова');
         setDataServer([...dataServer]);
+        const result = await ADD();
+        if (result)
+            {console.log('Результат добавления на сервере:', result);}
     }
     const deleteWord = async (index)=>{
         try {
             const result = await DELETE(index);
-            console.log('Результат удаления на сервере:', result);
+            if (result)
+                {console.log('Результат удаления на сервере:', result);}
             const idWord = dataServer.findIndex(n => n.id === index);
             if (idWord !== -1) {
                 dataServer.splice(idWord, 1);
