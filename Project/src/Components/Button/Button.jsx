@@ -12,7 +12,7 @@ export default function Button(){
     return(
         <>  
         <div className='conteiner button_right'>
-            <button className={(!buttonAdd)?'button active':'button disabled'} onClick={onClickButton}  disabled={buttonAdd}>Добавить новое слово</button>
+            <button className={(!buttonAdd)?'button button__active':'button button__disabled'} onClick={onClickButton}  disabled={buttonAdd}>Добавить новое слово</button>
         </div>
         </>
     )
