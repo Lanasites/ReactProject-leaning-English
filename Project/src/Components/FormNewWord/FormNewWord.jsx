@@ -5,8 +5,8 @@ import { useEffect, useState, useContext } from 'react';
 import { WordsContext} from '../../Context/WordsContextProvider'
 
 export default function FormNewWord({slovo, perevod, trans, tema}){
-    const {addWord, dataServer} = useContext(WordsContext);
-    // const[adding, setAdding] = useState(true);
+    const {addWord, dataServer, setFormForAddWord, setButtonAdd} = useContext(WordsContext);
+    const[adding, setAdding] = useState(true);
     const[newSlovo,setNewSlovo]=useState(slovo);
     const[perevodNewWord,setPerevodNewWord]=useState(perevod);
     const[transNewWord,setTransNewWord]=useState(trans);
@@ -34,7 +34,9 @@ export default function FormNewWord({slovo, perevod, trans, tema}){
         setErrorTrans(trans);
         setTemaNewWord(tema);
         addWord(newSlovo, perevodNewWord, transNewWord, temaNewWord)
-        // setEditStatus(false);
+        setAdding(false);
+        setFormForAddWord(false);
+        setButtonAdd(false);
     }
     const validationSlovo=(e)=>{
         const slovo = e.target.value;
@@ -87,7 +89,13 @@ export default function FormNewWord({slovo, perevod, trans, tema}){
             <input type='text' className={(errorTema)?'FormForNewWord__tema error':'FormForNewWord__tema FormForNewWord__input'} value = {temaNewWord} onChange={validationTema} placeholder='Тема'/>
             <div className='FormForNewWord__edit'>
                 <button type = 'submit' onClick={addNewWord} disabled={button} title='Добавить слово'><img src={save_img} alt="" /></button>
-                <img src={cancel_img} alt="" title='Отменить добавление' onClick={()=>setEditStatus(false)}/>
+                <img src={cancel_img} 
+                    alt="" 
+                    title='Отменить добавление' 
+                    onClick={()=>{
+                        setFormForAddWord(false);
+                        setButtonAdd(false);
+                        }}/>
             </div>
         </form>
         <div className='error-text' hidden={(errorSlovo||errorPerevod||errorTema||errorTrans)?false:true}> 

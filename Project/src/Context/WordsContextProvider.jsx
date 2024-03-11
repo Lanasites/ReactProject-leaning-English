@@ -9,6 +9,7 @@ export const WordsContext = createContext();
 export function WordsContextProvider({children}){
     const [dataServer, setDataServer]=useState(null);
     const [formForAddWord, setFormForAddWord]= useState(false);
+    const [buttonAdd, setButtonAdd]=useState(false);
     // const value = {dataServer, setDataServer, deleteWord};
 
     useEffect(()=>{
@@ -81,7 +82,7 @@ export function WordsContextProvider({children}){
             console.error('Ошибка при обновлении:', error);
         }
     }
-    const value = {dataServer, setDataServer, deleteWord, updateWord, addWord, setFormForAddWord, formForAddWord};
+    const value = {dataServer, setDataServer, deleteWord, updateWord, addWord, setFormForAddWord, formForAddWord, buttonAdd, setButtonAdd};
     console.log('данные в контексте в', new Date(),value);
     return(
         <WordsContext.Provider value={value}>
