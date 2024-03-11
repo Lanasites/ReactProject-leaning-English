@@ -1,8 +1,18 @@
-export default function ADD(){
-    async function addWord(){
+export default function ADD(word){
+    async function addWord(word){
         try{
             const response= await fetch(`/api/words/add`, {
-                method: "POST"
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(
+                    { id: word.id,
+                        english: word.english,
+                        russian: word.russian,
+                        transcription: word.transcription,
+                        tags: word.tags})
+    
             });
             if (!response.ok) {
                 throw new Error('Ошибка добавления данных');
@@ -14,5 +24,5 @@ export default function ADD(){
             return null
         }
     }
-    addWord();
+    addWord(word);
 }

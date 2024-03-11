@@ -39,7 +39,7 @@ export function WordsContextProvider({children}){
         dataServer.push(newWord);
         console.log('Добавление нового слова');
         setDataServer([...dataServer]);
-        const result = await ADD();
+        const result = await ADD(newWord);
         if (result)
             {console.log('Результат добавления на сервере:', result);}
     }
@@ -60,7 +60,7 @@ export function WordsContextProvider({children}){
     }
     const updateWord = async (index, slovo, perevod, trans, tema)=>{
         try {
-            const result = await UPDATE(index);
+            const result = await UPDATE(index, slovo, perevod, trans, tema);
             if (result)
                 {console.log('Результат обновления на сервере:', result);}
             const updatedDataServer = dataServer.map((item, idWord)=>{
