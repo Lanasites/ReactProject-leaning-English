@@ -8,7 +8,7 @@ import { WordsContext} from '../../Context/WordsContextProvider'
 
 export default function LineOfTable(props){
     const [editStatus,setEditStatus] = useState(false);
-    const {deleteWord} = useContext(WordsContext);
+    const {deleteWord, updateWord} = useContext(WordsContext);
     return(
         <>
         {(!editStatus) ? 
@@ -37,11 +37,13 @@ export default function LineOfTable(props){
         :
         (<LineOfTableEdit
             world={props}
+            id = {props.id}
             slovo={props.slovo}
             perevod={props.perevod}
             trans={props.trans}
             tema={props.tema}
             setEditStatus={setEditStatus}
+            updateWord={updateWord}
         />)
         }
         </>
