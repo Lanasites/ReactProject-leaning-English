@@ -10,7 +10,6 @@ import FormNewWord from '../FormNewWord/FormNewWord.jsx'
 
 export default function TableWithAllWords(){
     const {dataServer,setDataServer, addWord, deleteWord, updateWord, formForAddWord, setFormForAddWord} = useContext(WordsContext);
-    const newId = `${Math.max(...dataServer.map(item => item.id)) + 1}`;
     return(
         <>  
         <div className='ListOfWords'>
@@ -41,8 +40,6 @@ export default function TableWithAllWords(){
                     {(formForAddWord)
                     ?
                         (<FormNewWord
-                            key = {newId}
-                            id = {newId}
                             slovo = ''
                             perevod = ''
                             trans = ''

@@ -4,9 +4,9 @@ import cancel_img from '../../assets/cancel.svg';
 import { useEffect, useState, useContext } from 'react';
 import { WordsContext} from '../../Context/WordsContextProvider'
 
-export default function FormNewWord({id, slovo, perevod, trans, tema}){
-    const {addWord} = useState(false);
-
+export default function FormNewWord({slovo, perevod, trans, tema}){
+    const {addWord, dataServer} = useContext(WordsContext);
+    // const[adding, setAdding] = useState(true);
     const[newSlovo,setNewSlovo]=useState(slovo);
     const[perevodNewWord,setPerevodNewWord]=useState(perevod);
     const[transNewWord,setTransNewWord]=useState(trans);
@@ -27,14 +27,14 @@ export default function FormNewWord({id, slovo, perevod, trans, tema}){
     //     setTemaNewWord(tema)
     // },[world])
 
-    const saveInfo=(e)=>{
+    const addNewWord=(e)=>{
         e.preventDefault();
-        updateWord(id, slovo, perevod, trans, tema)
         setNewSlovo(slovo);
         setPerevodNewWord(perevod);
-        setErrorTransNewWord(trans);
+        setErrorTrans(trans);
         setTemaNewWord(tema);
-        setEditStatus(false);
+        addWord(newSlovo, perevodNewWord, transNewWord, temaNewWord)
+        // setEditStatus(false);
     }
     const validationSlovo=(e)=>{
         const slovo = e.target.value;
@@ -45,7 +45,7 @@ export default function FormNewWord({id, slovo, perevod, trans, tema}){
             setErrorSlovo(false);
             setButton(false); }
             
-        setSlovo(e.target.value)
+        setNewSlovo(e.target.value)
     }
     const validationPerevod=(e)=>{
         const perevod = e.target.value;
@@ -56,7 +56,7 @@ export default function FormNewWord({id, slovo, perevod, trans, tema}){
             setErrorPerevod(false);
             setButton(false); }
 
-        setPerevod(e.target.value)
+        setPerevodNewWord(e.target.value)
     }
     const validationTrans=(e)=>{
         if (e.target.value===''){
@@ -66,7 +66,7 @@ export default function FormNewWord({id, slovo, perevod, trans, tema}){
             setErrorTrans(false);
             setButton(false);}
 
-        setTrans(e.target.value)
+        setTransNewWord(e.target.value)
     }
     const validationTema=(e)=>{
         if (e.target.value===''){
@@ -76,17 +76,17 @@ export default function FormNewWord({id, slovo, perevod, trans, tema}){
             setErrorTema(false);
             setButton(false);}
        
-            setTema(e.target.value)
+            setTemaNewWord(e.target.value)
     }
     return(
         <>
-        <form className='FormForNewWord conteiner'>
-            <input type='text' className={(errorSlovo)?'FormForNewWord__slovo error':'FormForNewWord__slovo FormForNewWord__input'} value = {slovo} onChange={validationSlovo}/>
-            <input type='text' className={(errorPerevod)?'FormForNewWord__perevod error':'FormForNewWord__perevod FormForNewWord__input'} value = {perevod} onChange={validationPerevod}/>
-            <input type='text' className={(errorTrans)?'FormForNewWord__trans error':'FormForNewWord__trans FormForNewWord__input'} value = {trans} onChange={validationTrans}/>
-            <input type='text' className={(errorTema)?'FormForNewWord__tema error':'FormForNewWord__tema FormForNewWord__input'} value = {tema} onChange={validationTema}/>
+        <form className='FormForNewWord'>
+            <input type='text' className={(errorSlovo)?'FormForNewWord__slovo error':'FormForNewWord__slovo FormForNewWord__input'} value = {newSlovo} onChange={validationSlovo} placeholder='Слово'/>
+            <input type='text' className={(errorPerevod)?'FormForNewWord__perevod error':'FormForNewWord__perevod FormForNewWord__input'} value = {perevodNewWord} onChange={validationPerevod} placeholder='Перевод'/>
+            <input type='text' className={(errorTrans)?'FormForNewWord__trans error':'FormForNewWord__trans FormForNewWord__input'} value = {transNewWord} onChange={validationTrans} placeholder='[Трансрипция]'/>
+            <input type='text' className={(errorTema)?'FormForNewWord__tema error':'FormForNewWord__tema FormForNewWord__input'} value = {temaNewWord} onChange={validationTema} placeholder='Тема'/>
             <div className='FormForNewWord__edit'>
-                <button type = 'submit' onClick={saveInfo} disabled={button} title='Добавить слово'><img src={save_img} alt="" /></button>
+                <button type = 'submit' onClick={addNewWord} disabled={button} title='Добавить слово'><img src={save_img} alt="" /></button>
                 <img src={cancel_img} alt="" title='Отменить добавление' onClick={()=>setEditStatus(false)}/>
             </div>
         </form>

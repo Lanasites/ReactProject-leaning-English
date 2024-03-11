@@ -26,16 +26,16 @@ export function WordsContextProvider({children}){
         )
     }
     
-    const addWord = async()=>{
-        // const newId = `${Math.max(...dataServer.map(item => item.id)) + 1}`;
-        // const newWord ={
-        //     id: newId,
-        //     english: '',
-        //     russian: '',
-        //     transcription: '',
-        //     tags: ''
-        // }
-        // dataServer.push(newWord);
+    const addWord = async(slovo, perevod, trans, tema)=>{
+        const newId = `${Math.max(...dataServer.map(item => item.id)) + 1}`;
+        const newWord ={
+            id: newId,
+            english: slovo,
+            russian: perevod,
+            transcription: trans,
+            tags: tema
+        }
+        dataServer.push(newWord);
         console.log('Добавление нового слова');
         setDataServer([...dataServer]);
         const result = await ADD();
