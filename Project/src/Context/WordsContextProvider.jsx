@@ -8,6 +8,7 @@ export const WordsContext = createContext();
 
 export function WordsContextProvider({children}){
     const [dataServer, setDataServer]=useState(null);
+    const [formForAddWord, setFormForAddWord]= useState(false);
     // const value = {dataServer, setDataServer, deleteWord};
 
     useEffect(()=>{
@@ -26,15 +27,15 @@ export function WordsContextProvider({children}){
     }
     
     const addWord = async()=>{
-        const newId = `${Math.max(...dataServer.map(item => item.id)) + 1}`;
-        const newWord ={
-            id: newId,
-            english: '',
-            russian: '',
-            transcription: '',
-            tags: ''
-        }
-        dataServer.push(newWord);
+        // const newId = `${Math.max(...dataServer.map(item => item.id)) + 1}`;
+        // const newWord ={
+        //     id: newId,
+        //     english: '',
+        //     russian: '',
+        //     transcription: '',
+        //     tags: ''
+        // }
+        // dataServer.push(newWord);
         console.log('Добавление нового слова');
         setDataServer([...dataServer]);
         const result = await ADD();
@@ -80,7 +81,7 @@ export function WordsContextProvider({children}){
             console.error('Ошибка при обновлении:', error);
         }
     }
-    const value = {dataServer, setDataServer, deleteWord, updateWord, addWord};
+    const value = {dataServer, setDataServer, deleteWord, updateWord, addWord, setFormForAddWord, formForAddWord};
     console.log('данные в контексте в', new Date(),value);
     return(
         <WordsContext.Provider value={value}>

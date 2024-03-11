@@ -1,14 +1,17 @@
 @import '../../style/vars';
 
-.button{
+.button {
     margin: 30px 0;
-    background-color: $color_button_red;
     border-radius: 20px;
     color: white;
     padding: 10px 50px;
     border: 2px solid $color_button_red;
+    
+}
 
-
+.active{
+    background-color: $color_button_red;
+    
     &:hover{
         background-color: $background_color;
         border: 2px solid $color_button_red;
@@ -18,4 +21,8 @@
 .button_right{
     display: flex;
     justify-content: end;
+}
+.disabled{
+    background-color:grey;
+    border:  2px solid grey;
 }

@@ -6,9 +6,11 @@ import Button from'../Button/Button.jsx'
 // import worldsArr from '../../assets/data/worlds.json'
 import { useContext} from 'react'
 import { WordsContext} from '../../Context/WordsContextProvider'
+import FormNewWord from '../FormNewWord/FormNewWord.jsx'
 
 export default function TableWithAllWords(){
-    const {dataServer,setDataServer, addWord, deleteWord, updateWord} = useContext(WordsContext);
+    const {dataServer,setDataServer, addWord, deleteWord, updateWord, formForAddWord, setFormForAddWord} = useContext(WordsContext);
+    const newId = `${Math.max(...dataServer.map(item => item.id)) + 1}`;
     return(
         <>  
         <div className='ListOfWords'>
@@ -35,7 +37,20 @@ export default function TableWithAllWords(){
                         })}
                     </div>
                 </div>
-                <Button></Button>
+                <div className='form conteiner'>
+                    {(formForAddWord)
+                    ?
+                        (<FormNewWord
+                            key = {newId}
+                            id = {newId}
+                            slovo = ''
+                            perevod = ''
+                            trans = ''
+                            tema = ''
+                        />)
+                    :''}
+                    <Button/>
+                </div>
             </div>
         </>
     )
