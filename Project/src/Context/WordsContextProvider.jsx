@@ -24,10 +24,19 @@ export function WordsContextProvider({children}){
         )
     }
     
-    // const addWord = (word)=>{
-    //     dataServer.push(word);
-    //     setDataServer([...dataServer]);
-    // }
+    const addWord = ()=>{
+        const newId = `${Math.max(...dataServer.map(item => item.id)) + 1}`;
+        const newWord ={
+            id: newId,
+            english: '',
+            russian: '',
+            transcription: '',
+            tags: ''
+        }
+        dataServer.push(newWord);
+        console.log('Добавление нового слова');
+        setDataServer([...dataServer]);
+    }
     const deleteWord = async (index)=>{
         try {
             const result = await DELETE(index);
@@ -66,7 +75,7 @@ export function WordsContextProvider({children}){
             console.error('Ошибка при обновлении:', error);
         }
     }
-    const value = {dataServer, setDataServer, deleteWord, updateWord};
+    const value = {dataServer, setDataServer, deleteWord, updateWord, addWord};
     console.log('данные в контексте в', new Date(),value);
     return(
         <WordsContext.Provider value={value}>
