@@ -14,4 +14,5 @@ export default function UPDATE(id){
             return null
         }
     }
+    updateWordById(id);
 }

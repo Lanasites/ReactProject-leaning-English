@@ -7,6 +7,7 @@ export default function DELETE(id){
             if (!response.ok) {
                 throw new Error('Ошибка удаления данных');
             };
+            console.log('ответ сервера',response);
             return await response.json();
         }
         catch(e){
@@ -14,4 +15,5 @@ export default function DELETE(id){
             return null
         }
     }
+    deleteWordById(id);
 }

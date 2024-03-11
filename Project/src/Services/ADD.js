@@ -14,4 +14,5 @@ export default function ADD(){
             return null
         }
     }
+    addWord();
 }
