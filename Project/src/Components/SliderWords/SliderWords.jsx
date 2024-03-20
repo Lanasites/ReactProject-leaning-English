@@ -7,17 +7,20 @@ import { inject, observer } from 'mobx-react'
 
 
 function SliderWords({words}){
-
-    if (words.length<=0||!words) {
-        console.error('Ничего не загрузилось')
-        return <h1 className='sliderWorlds'>Loading...</h1>;
-    }
-
-    const worldsArr = words;
-    const lengthArr = worldsArr.length;
-    const [currentIndex, setcurrentIndex] = useState(0);
+    console.log('worldsArr', words);
+    // const worldsArr = words;
+    const lengthArr = words.length;
+    const[currentIndex, setcurrentIndex] = useState(0);
     const[studiedNum, setStudiedNum]=useState(0);
     const[studiedWords, setStudiedWords]=useState([]);
+
+    // useEffect(()=>{
+    //     loadWords();
+    // },[words]);
+
+    if (!words ||lengthArr<=0) {
+        return <h1 className='sliderWorlds'>Loading...</h1>;
+    }
 
     const handleNextCard = () =>{
         if (currentIndex > lengthArr-2){
@@ -54,9 +57,9 @@ function SliderWords({words}){
                         <CardOfWord
                             key = {currentIndex}
                             currentIndex = {currentIndex}
-                            englishWord = {worldsArr[currentIndex].english}
-                            transcriptionWord = {worldsArr[currentIndex].transcription}
-                            russianWord = {worldsArr[currentIndex].russian}
+                            englishWord = {words[currentIndex].english}
+                            transcriptionWord = {words[currentIndex].transcription}
+                            russianWord = {words[currentIndex].russian}
                             fun = {studiedNumber}
                             isStudied = {studiedWords.includes(currentIndex)}
                         />
@@ -72,7 +75,7 @@ function SliderWords({words}){
 export default inject(({wordsStore})=>{
     const {words, isLoaded, loadWords} = wordsStore;
     useEffect(() => {
-                loadWords();
+        loadWords();
     },[isLoaded]);
     return {words, isLoaded, loadWords};
 })(observer(SliderWords));

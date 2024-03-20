@@ -16,7 +16,7 @@ class WordsStore {
             removeWord: action
         })
     }
-
+    
     loadWords = async () => {
         if (this.isLoaded){
             return;
@@ -36,6 +36,8 @@ class WordsStore {
             // this.isLoaded = false;
             this.error = error;
         }
+
+        // console.log('загрузка данных');
     }
     
     updateWord = (word) => {
