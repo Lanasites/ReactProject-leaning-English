@@ -1,5 +1,7 @@
 import { action, observable, makeAutoObservable, computed } from 'mobx';
 import ADD from '../Services/ADD';
+import GET from '../Services/GET';
+import DELETE from '../Services/DELETE';
 
 export default class WordsStore {
     words = []
@@ -16,7 +18,7 @@ export default class WordsStore {
             loadWords: action,
             updateWord: action,
             addWord: action,
-            removeWord: action,
+            deleteWord: action,
             toggleFormForAddWord: action
         })
     }
@@ -25,23 +27,10 @@ export default class WordsStore {
         if (this.isLoaded){
             return;
         }
-        
-        try {
-        const response = await fetch('http://itgirlschool.justmakeit.ru/api/words');
-            if (response.ok) {
-                const data = await response.json();
-                this.words = data;
-                this.isLoaded = true;
-                console.log('Данные с сервера успешно загружены',data);
-            } else {
-                throw new Error('Ошибка загрузки данных');
-            }
-        } 
-        catch (error) {
-            // this.isLoaded = false;
-            this.error = error;
-        }
-
+        const data = await GET.getWorlds();
+        this.words = data;
+        this.isLoaded = true;
+        console.log('Данные с сервера успешно загружены',data);
     }
     
     updateWord = (word) => {
@@ -63,8 +52,20 @@ export default class WordsStore {
         if (result)
             {console.log('Результат добавления на сервере:', result);}
     }
-    removeWord = (index) => {
-        this.words.splice(index, 1)
+
+    deleteWord = async (index)=>{
+        try {
+            const result = await DELETE(index);
+            if (result)
+                {console.log('Результат удаления на сервере:', result);}
+            const idWord = this.words.findIndex(n => n.id === index);
+            if (idWord !== -1) {
+                this.words.splice(idWord, 1);
+            }
+        }
+        catch(error){
+            console.error('Ошибка при удалении:', error);
+        }
     }
 
     toggleFormForAddWord =()=> {

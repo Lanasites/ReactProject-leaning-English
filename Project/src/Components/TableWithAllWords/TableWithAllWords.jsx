@@ -7,7 +7,7 @@ import FormNewWord from '../FormNewWord/FormNewWord'
 import { useState, useEffect } from 'react'
 import { inject, observer } from 'mobx-react'
 
-function TableWithAllWords({words, formForAddWord}){
+function TableWithAllWords({words, formForAddWord, deleteWord}){
 
     return(
         <>  
@@ -26,10 +26,12 @@ function TableWithAllWords({words, formForAddWord}){
                             return (
                             < LineOfTable
                                 key = {world.id}
+                                id = {world.id}
                                 slovo = {world.english}
                                 perevod = {world.russian}
                                 trans = {world.transcription}
                                 tema = {world.tags}
+                                deleteWord={deleteWord}
                             />)
                         })}
                     </div>
@@ -52,9 +54,9 @@ function TableWithAllWords({words, formForAddWord}){
 
 }
 export default inject(({wordsStore})=>{
-    const {words, isLoaded, loadWords, formForAddWord} = wordsStore;
+    const {words, isLoaded, loadWords, formForAddWord, deleteWord} = wordsStore;
     useEffect(() => {
         loadWords();
     },[isLoaded]);
-    return {words, isLoaded, loadWords, formForAddWord};
+    return {words, isLoaded, loadWords, formForAddWord, deleteWord};
 })(observer(TableWithAllWords));
