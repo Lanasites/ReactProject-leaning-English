@@ -7,8 +7,6 @@ import { inject, observer } from 'mobx-react'
 
 
 function SliderWords({words}){
-    console.log('worldsArr', words);
-    // const worldsArr = words;
     const lengthArr = words.length;
     const[currentIndex, setcurrentIndex] = useState(0);
     const[studiedNum, setStudiedNum]=useState(0);

@@ -3,9 +3,11 @@ import '../../style/App.scss'
 
 import LineOfTable from '../LineOfTable/LineOfTable.jsx'
 import Button from'../Button/Button.jsx'
-import worldsArr from '../../assets/data/worlds.json'
+// import worldsArr from '../../assets/data/worlds.json'
+import { useState, useEffect } from 'react'
+import { inject, observer } from 'mobx-react'
 
-export default function TableWithAllWords(){
+function TableWithAllWords({words}){
  
     return(
         <>  
@@ -20,7 +22,7 @@ export default function TableWithAllWords(){
                             <div className='table__headings__tema'>Тема</div>
                             <div className='table__headings__edit'>Редактировать/Удалить </div>
                         </div>
-                        {worldsArr.map((world) => {
+                        {words.map((world) => {
                             return (
                             < LineOfTable
                                 key = {world.id}
@@ -38,3 +40,10 @@ export default function TableWithAllWords(){
     )
 
 }
+export default inject(({wordsStore})=>{
+    const {words, isLoaded, loadWords} = wordsStore;
+    useEffect(() => {
+        loadWords();
+    },[isLoaded]);
+    return {words, isLoaded, loadWords};
+})(observer(TableWithAllWords));

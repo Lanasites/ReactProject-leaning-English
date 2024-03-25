@@ -16,7 +16,7 @@ class WordsStore {
             removeWord: action
         })
     }
-    
+
     loadWords = async () => {
         if (this.isLoaded){
             return;
@@ -28,6 +28,7 @@ class WordsStore {
                 const data = await response.json();
                 this.words = data;
                 this.isLoaded = true;
+                console.log('Данные с сервера успешно загружены',data);
             } else {
                 throw new Error('Ошибка загрузки данных');
             }
@@ -37,7 +38,6 @@ class WordsStore {
             this.error = error;
         }
 
-        // console.log('загрузка данных');
     }
     
     updateWord = (word) => {
