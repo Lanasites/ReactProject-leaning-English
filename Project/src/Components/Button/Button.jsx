@@ -2,11 +2,10 @@ import './Button.scss'
 import { inject, observer } from 'mobx-react'
 import { useEffect } from 'react'
 
-function Button({formForAddWord}){
+function Button({toggleFormForAddWord}){
 
     const clickButton = ()=>{
-        console.log('нажали кнопку добавить',);
-        formForAddWord = true;
+        toggleFormForAddWord();
     }
     return(
         <>  
@@ -18,13 +17,10 @@ function Button({formForAddWord}){
 
 }
 export default inject(({wordsStore})=>{
-    const {loadWords, isLoaded, formForAddWord} = wordsStore;
+    const {loadWords, isLoaded, formForAddWord, toggleFormForAddWord} = wordsStore;
     useEffect(() => {
         loadWords();
     },[isLoaded]);
-    useEffect(() => {
-        console.log('formForAddWord',formForAddWord);
-    },[formForAddWord]);
 
-    return {loadWords, isLoaded,formForAddWord};
+    return {loadWords, isLoaded,toggleFormForAddWord, formForAddWord};
 })(observer(Button));

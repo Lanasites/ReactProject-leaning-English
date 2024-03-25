@@ -4,8 +4,7 @@ import cancel_img from '../../assets/cancel.svg';
 import { useEffect, useState } from 'react';
 import { inject, observer } from 'mobx-react'
 
-function FormNewWord({slovo, perevod, trans, tema}){
-    // const {addWord, dataServer, setFormForAddWord, setButtonAdd} = useContext(WordsContext);
+function FormNewWord({slovo, perevod, trans, tema, toggleFormForAddWord, addWord}){
     const[adding, setAdding] = useState(true);
     const[newSlovo,setNewSlovo]=useState(slovo);
     const[perevodNewWord,setPerevodNewWord]=useState(perevod);
@@ -35,8 +34,7 @@ function FormNewWord({slovo, perevod, trans, tema}){
         setTemaNewWord(tema);
         addWord(newSlovo, perevodNewWord, transNewWord, temaNewWord)
         setAdding(false);
-        setFormForAddWord(false);
-        setButtonAdd(false);
+        toggleFormForAddWord();
     }
     const validationSlovo=(e)=>{
         const slovo = e.target.value;
@@ -77,7 +75,6 @@ function FormNewWord({slovo, perevod, trans, tema}){
         else {
             setErrorTema(false);
             setButton(false);}
-       
             setTemaNewWord(e.target.value)
     }
     return(
@@ -93,8 +90,7 @@ function FormNewWord({slovo, perevod, trans, tema}){
                     alt="" 
                     title='Отменить добавление' 
                     onClick={()=>{
-                        setFormForAddWord(false);
-                        setButtonAdd(false);
+                        toggleFormForAddWord();
                         }}/>
             </div>
         </form>
@@ -116,9 +112,9 @@ function FormNewWord({slovo, perevod, trans, tema}){
     
 }
 export default inject(({wordsStore})=>{
-    const {words, isLoaded, loadWords, formForAddWord} = wordsStore;
+    const {words, isLoaded, loadWords, formForAddWord, toggleFormForAddWord, addWord} = wordsStore;
     useEffect(() => {
         loadWords();
     },[isLoaded]);
-    return {words, isLoaded, loadWords, formForAddWord};
+    return {words, isLoaded, loadWords, formForAddWord, toggleFormForAddWord, addWord};
 })(observer(FormNewWord));

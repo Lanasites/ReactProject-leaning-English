@@ -4,7 +4,6 @@ import '../../style/App.scss'
 import LineOfTable from '../LineOfTable/LineOfTable.jsx'
 import Button from'../Button/Button.jsx'
 import FormNewWord from '../FormNewWord/FormNewWord'
-// import worldsArr from '../../assets/data/worlds.json'
 import { useState, useEffect } from 'react'
 import { inject, observer } from 'mobx-react'
 

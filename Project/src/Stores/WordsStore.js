@@ -1,4 +1,5 @@
 import { action, observable, makeAutoObservable, computed } from 'mobx';
+import ADD from '../Services/ADD';
 
 export default class WordsStore {
     words = []
@@ -15,7 +16,8 @@ export default class WordsStore {
             loadWords: action,
             updateWord: action,
             addWord: action,
-            removeWord: action
+            removeWord: action,
+            toggleFormForAddWord: action
         })
     }
 
@@ -46,8 +48,9 @@ export default class WordsStore {
         // return this.words.push(word)
         console.log(word)
     }
-    addWord = (slovo, perevod, trans, tema) => {
-        const newId = `${Math.max(...dataServer.map(item => item.id)) + 1}`;
+ 
+    addWord = async(slovo, perevod, trans, tema, words) => {
+        const newId = `${Math.max(...this.words.map(item => item.id)) + 1}`;
         const newWord ={
             id: newId,
             english: slovo,
@@ -56,9 +59,16 @@ export default class WordsStore {
             tags: tema
         }
         this.words.push(newWord);
-        console.log('Добавление нового слова', newWord);
+        const result = await ADD(newWord);
+        if (result)
+            {console.log('Результат добавления на сервере:', result);}
     }
     removeWord = (index) => {
         this.words.splice(index, 1)
     }
+
+    toggleFormForAddWord =()=> {
+        this.formForAddWord = !this.formForAddWord;
+    }
+
 }
