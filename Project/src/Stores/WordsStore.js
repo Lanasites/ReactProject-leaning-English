@@ -1,15 +1,17 @@
 import { action, observable, makeAutoObservable, computed } from 'mobx';
 
-class WordsStore {
+export default class WordsStore {
     words = []
     isLoaded = false
     error = null
+    formForAddWord = false;
 
     constructor() {
         makeAutoObservable(this, {
             words: observable,
             isLoaded: observable,
             error: observable,
+            formForAddWord: observable,
             loadWords: action,
             updateWord: action,
             addWord: action,
@@ -44,12 +46,19 @@ class WordsStore {
         // return this.words.push(word)
         console.log(word)
     }
-    addWord = (word) => {
-        this.words.push(word)
+    addWord = (slovo, perevod, trans, tema) => {
+        const newId = `${Math.max(...dataServer.map(item => item.id)) + 1}`;
+        const newWord ={
+            id: newId,
+            english: slovo,
+            russian: perevod,
+            transcription: trans,
+            tags: tema
+        }
+        this.words.push(newWord);
+        console.log('Добавление нового слова', newWord);
     }
     removeWord = (index) => {
         this.words.splice(index, 1)
     }
 }
-
-export default WordsStore

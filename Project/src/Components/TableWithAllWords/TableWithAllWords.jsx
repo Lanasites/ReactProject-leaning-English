@@ -3,12 +3,13 @@ import '../../style/App.scss'
 
 import LineOfTable from '../LineOfTable/LineOfTable.jsx'
 import Button from'../Button/Button.jsx'
+import FormNewWord from '../FormNewWord/FormNewWord'
 // import worldsArr from '../../assets/data/worlds.json'
 import { useState, useEffect } from 'react'
 import { inject, observer } from 'mobx-react'
 
-function TableWithAllWords({words}){
- 
+function TableWithAllWords({words, formForAddWord}){
+
     return(
         <>  
         <div className='ListOfWords'>
@@ -34,16 +35,27 @@ function TableWithAllWords({words}){
                         })}
                     </div>
                 </div>
-                <Button></Button>
+                <div className='form conteiner'>
+                    {(formForAddWord)
+                    ?
+                        (<FormNewWord
+                            slovo = ''
+                            perevod = ''
+                            trans = ''
+                            tema = ''
+                        />)
+                    :''}
+                    <Button/>
+                </div>
             </div>
         </>
     )
 
 }
 export default inject(({wordsStore})=>{
-    const {words, isLoaded, loadWords} = wordsStore;
+    const {words, isLoaded, loadWords, formForAddWord} = wordsStore;
     useEffect(() => {
         loadWords();
     },[isLoaded]);
-    return {words, isLoaded, loadWords};
+    return {words, isLoaded, loadWords, formForAddWord};
 })(observer(TableWithAllWords));
