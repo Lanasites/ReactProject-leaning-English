@@ -2,8 +2,9 @@ import './LineOfTableEdit.scss';
 import save_img from '../../assets/save.svg';
 import cancel_img from '../../assets/cancel.svg';
 import { useEffect, useState } from 'react';
+import { inject, observer } from 'mobx-react'
 
-export default function LineOfTableEdit({world, setEditStatus}){
+function LineOfTableEdit({world, setEditStatus, updateWord}){
     const[slovo,setSlovo]=useState(world.slovo);
     const[perevod,setPerevod]=useState(world.perevod);
     const[trans,setTrans]=useState(world.trans);
@@ -27,6 +28,7 @@ export default function LineOfTableEdit({world, setEditStatus}){
     const saveInfo=(e)=>{
         e.preventDefault();
         console.log('слово сохранено', 'slovo:', slovo, ', perevod:',perevod,', trans:',trans,', tema:',tema);
+        updateWord(world.id, slovo, perevod, trans, tema)
         setEditStatus(false);
     }
     const validationSlovo=(e)=>{
@@ -101,3 +103,11 @@ export default function LineOfTableEdit({world, setEditStatus}){
         )
     
 }
+
+export default inject(({wordsStore})=>{
+    const {words, isLoaded, loadWords,updateWord} = wordsStore;
+    useEffect(() => {
+        loadWords();
+    },[isLoaded]);
+    return {words, isLoaded, loadWords, updateWord};
+})(observer(LineOfTableEdit));

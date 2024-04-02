@@ -33,9 +33,17 @@ export default class WordsStore {
         console.log('Данные с сервера успешно загружены',data);
     }
     
-    updateWord = (word) => {
-        // return this.words.push(word)
-        console.log(word)
+    updateWord = (id, slovo, perevod, trans, tema) => {
+        const setingWord ={
+            id: id,
+            english: slovo,
+            russian: perevod,
+            transcription: trans,
+            tags: tema
+        }
+        console.log('setingWord',setingWord)
+        return this.words[id]= setingWord;
+        
     }
  
     addWord = async(slovo, perevod, trans, tema, words) => {
