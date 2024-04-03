@@ -7,7 +7,7 @@ export default function ADD(word){
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(
-                    { id: word.id,
+                    {   id: word.id,
                         english: word.english,
                         russian: word.russian,
                         transcription: word.transcription,
