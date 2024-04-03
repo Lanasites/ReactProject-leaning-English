@@ -2,6 +2,7 @@ import { action, observable, makeAutoObservable, computed } from 'mobx';
 import ADD from '../Services/ADD';
 import GET from '../Services/GET';
 import DELETE from '../Services/DELETE';
+import SET from '../Services/SET';
 
 export default class WordsStore {
     words = []
@@ -33,17 +34,22 @@ export default class WordsStore {
         console.log('Данные с сервера успешно загружены',data);
     }
     
-    updateWord = (id, slovo, perevod, trans, tema) => {
-        const setingWord ={
-            id: id,
-            english: slovo,
-            russian: perevod,
-            transcription: trans,
-            tags: tema
+    updateWord = async(id, slovo, perevod, trans, tema) => {
+        try{
+            const setingWord ={
+                id: id,
+                english: slovo,
+                russian: perevod,
+                transcription: trans,
+                tags: tema
+            }
+            const idWord = this.words.findIndex(n => n.id === id);
+            this.words[idWord]= setingWord;
+            const result = await SET(setingWord);
         }
-        console.log('setingWord',setingWord)
-        return this.words[id]= setingWord;
-        
+        catch(error){
+            console.error('Ошибка при обновлении:', error);
+        }
     }
  
     addWord = async(slovo, perevod, trans, tema, words) => {

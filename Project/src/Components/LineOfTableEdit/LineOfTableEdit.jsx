@@ -27,7 +27,6 @@ function LineOfTableEdit({world, setEditStatus, updateWord}){
 
     const saveInfo=(e)=>{
         e.preventDefault();
-        console.log('слово сохранено', 'slovo:', slovo, ', perevod:',perevod,', trans:',trans,', tema:',tema);
         updateWord(world.id, slovo, perevod, trans, tema)
         setEditStatus(false);
     }
@@ -82,7 +81,6 @@ function LineOfTableEdit({world, setEditStatus, updateWord}){
             <input type='text' className={(errorTema)?'LineOfTable__tema error':'LineOfTable__tema LineOfTable__input'} value = {tema} onChange={validationTema}/>
             <div className='LineOfTable__edit'>
                 <button type = 'submit' onClick={saveInfo} disabled={button} title='Сохранить'><img src={save_img} alt="" /></button>
-                {/* <img src={save_img} alt="" onClick={saveInfo} disabled={button}/> */}
                 <img src={cancel_img} alt="" title='Отменить редактирование' onClick={()=>setEditStatus(false)}/>
             </div>
         </form>
