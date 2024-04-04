@@ -27,6 +27,10 @@ function LineOfTableEdit({world, setEditStatus, updateWord}){
 
     const saveInfo=(e)=>{
         e.preventDefault();
+        setSlovo(slovo);
+        setPerevod(perevod);
+        setErrorTrans(trans);
+        setTema(tema);
         updateWord(world.id, slovo, perevod, trans, tema)
         setEditStatus(false);
     }
